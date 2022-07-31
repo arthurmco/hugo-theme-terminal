@@ -15,7 +15,15 @@
       <span class="post-author">:: {{ . }}</span>
     {{ end }}
     {{ if and (.Param "readingTime") (eq (.Param "readingTime") true) }}
-      <span class="post-reading-time">:: {{ .ReadingTime }} min read ({{ .WordCount }} words)</span>
+      <span class="post-reading-time"> 
+        <br />
+        {{.ReadingTime }} 
+        {{ if (eq .ReadingTime 1) }} 
+          minuto 
+        {{ else }} 
+          minutos 
+        {{ end }} 
+      de leitura </span>
     {{ end }}
   </div>
 

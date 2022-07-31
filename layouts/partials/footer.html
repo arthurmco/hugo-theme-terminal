@@ -1,4 +1,20 @@
-<footer class="footer">
+<footer class="footer">  
+  <div class="footer__dates">
+    <select id="date-archive" value="">
+    <option value="">View by date</option>
+    {{ range (where .Site.Pages "Section" "posts" ) }}
+      {{ range .Pages.GroupByPublishDate "2006" }}
+        {{ $year := .Key }}
+        <optgroup label="{{ .Key }} ({{ len (.Pages) }})">
+        {{ range .GroupByPublishDate "January" }}
+          <option value="{{$year}}/{{.Key}}">{{.Key}} ({{ len (.Pages) }})</option>
+        {{ end }}
+      </optgroup>
+      {{ end }}
+    {{ end }}
+    </select>
+  </div>
+
   <div class="footer__inner">
     {{ if $.Site.Copyright }}
       <div class="copyright copyright--user">

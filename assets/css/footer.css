@@ -16,6 +16,10 @@
     }
   }
 
+  &__dates {
+    margin-bottom: 1em;
+  }
+
   a {
     color: inherit;
   }
