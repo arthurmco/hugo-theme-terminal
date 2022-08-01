@@ -1,18 +1,24 @@
 <footer class="footer">  
   <div class="footer__dates">
-    <select id="date-archive" value="">
-    <option value="">View by date</option>
+    <h4>Archive</h4>
+    <ul id="date-archive">
     {{ range (where .Site.Pages "Section" "posts" ) }}
-      {{ range .Pages.GroupByPublishDate "2006" }}
+      {{ range .Pages.GroupByPublishDate "2006" }}      
         {{ $year := .Key }}
-        <optgroup label="{{ .Key }} ({{ len (.Pages) }})">
-        {{ range .GroupByPublishDate "January" }}
-          <option value="{{$year}}/{{.Key}}">{{.Key}} ({{ len (.Pages) }})</option>
+        {{ $monthname := "January"  }}
+        {{ range .GroupByPublishDate "01" }}
+          {{ $temp := newScratch }}
+          {{ $temp.Set "monthname" "" }}
+          {{ range (first 1 .Pages) }}
+          {{ $temp.Set "monthname" (.Date.Format "January") }}
+          {{ end }}
+          <li><a href="{{ (urlize (printf "archive/%s%s" $year .Key )) | absLangURL }}">
+            {{ $temp.Get "monthname" }} {{ $year }}</a> ({{ len (.Pages) }})</li>
         {{ end }}
       </optgroup>
       {{ end }}
     {{ end }}
-    </select>
+    </li>
   </div>
 
   <div class="footer__inner">

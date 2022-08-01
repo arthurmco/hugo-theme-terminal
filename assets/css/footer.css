@@ -18,6 +18,20 @@
 
   &__dates {
     margin-bottom: 1em;
+    border-top: 1px solid color-mod(var(--accent) alpha(20%));
+    border-bottom: 1px solid color-mod(var(--accent) alpha(20%));
+    padding: 0;
+
+    & h4 {
+      margin: 0;
+      padding: 0;
+    }
+
+    & ul#date-archive {
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+
   }
 
   a {
