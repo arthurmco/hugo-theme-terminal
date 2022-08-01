@@ -49,19 +49,3 @@ desktopMenuTrigger &&
       menuMore.style.right = 0;
     }
   });
-
-
-const archiveMenu = document.querySelector("#date-archive");
-archiveMenu && archiveMenu.addEventListener("change", e => {
-  const months = [...Array(12).keys()].map(v => new Date(0, v).toLocaleString("en-US", {month: 'long'}));
-
-  const [stryear, strmonth] = e.target.value.split("/");
-  const monthnum = months.indexOf(strmonth)
-  if (monthnum >= 0) {
-    const monthval = (monthnum+1).toString().padStart(2, '0');
-    const slug = `${stryear}/${monthval}`;
-    
-    window.location = `/blog/archive/${slug}/`;
-  }
-
-})
