@@ -3,6 +3,11 @@
     <div class="header__logo">
       {{ partial "logo.html" . }}
     </div>
+
+    {{ with .OutputFormats.Get "RSS" }}
+    <a class="header__rss" href="{{.RelPermalink }}"><img src="{{ "img/rss-icon.svg"  }}" title="Feed RSS" /></a>
+    {{ end }}
+
     {{ if len $.Site.Menus }}
       <div class="menu-trigger">menu</div>
     {{ end }}
